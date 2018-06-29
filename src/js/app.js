@@ -7,14 +7,14 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
     Object.keys(myJson).map((currencies) => {
       const currencyLists = myJson[currencies]
       Object.keys(currencyLists).map((currencyId) => {
-        const currId = currencyLists[currencyId]
+        const currId = currencyId
 
         //   currencies from
         const listOfCurrenciesA = document.getElementById('currenciesA');
         const currencyFrom = document.createElement("option");
         currencyFrom.setAttribute("id", "currencyFrom");
-        currencyFrom.text = currId.id;
-        currencyFrom.value = currId.id;
+        currencyFrom.text = currId;
+        currencyFrom.value = currId;
         listOfCurrenciesA.appendChild(currencyFrom);
 
 
@@ -22,8 +22,8 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
         const listOfCurrenciesB = document.getElementById('currenciesB');
         const currencyTo = document.createElement("option");
         currencyTo.setAttribute("id", "currencyTo");
-        currencyTo.text = currId.id;
-        currencyTo.value = currId.id;
+        currencyTo.text = currId;
+        currencyTo.value = currId;
         listOfCurrenciesB.appendChild(currencyTo);
       });
     })
@@ -46,6 +46,7 @@ window.onload = function () {
       .then(function (result) {
         Object.keys(result).map((resultValue)=>{
           const exchangeRate = result[resultValue].val
+          console.log(exchangeRate)
           document.getElementById('rate').innerHTML = exchangeRate.toFixed(2);
           const inputAmount = document.getElementById('inputAmount').value;
           // currency conversion output
@@ -59,7 +60,7 @@ window.onload = function () {
 
 // service worker registration
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./service-worker.js', {scope: './'})
+  navigator.serviceWorker.register('../service-worker.js')
   .then((registration)=> {
     console.log('service worker registered')
   })
@@ -67,4 +68,5 @@ if('serviceWorker' in navigator) {
     console.log('service worker failed to register', err);
   })
 }
+
 
