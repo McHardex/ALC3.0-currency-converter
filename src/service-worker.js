@@ -72,7 +72,7 @@ self.addEventListener('fetch', (e)=> {
 
 				// If the request is NOT in the cache, fetch and cache
 
-				var requestClone = e.request.clone();
+				const requestClone = e.request.clone();
 				return fetch(requestClone)
 					.then(function(response) {
 
@@ -81,7 +81,7 @@ self.addEventListener('fetch', (e)=> {
 							return response;
 						}
 
-						var responseClone = response.clone();
+						const responseClone = response.clone();
 
 						//  Open the cache
 						caches.open(cacheName).then(function(cache) {

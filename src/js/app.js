@@ -1,3 +1,4 @@
+
 // fetching list of currencies
 fetch('https://free.currencyconverterapi.com/api/v5/currencies')
   .then(function (response) {
@@ -30,7 +31,6 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
   });
 
 
-
 window.onload = function () {
   document.getElementById('submitForm').addEventListener('click', (e) => {
     e.preventDefault();
@@ -46,12 +46,12 @@ window.onload = function () {
       .then(function (result) {
         Object.keys(result).map((resultValue)=>{
           const exchangeRate = result[resultValue].val
-          console.log(exchangeRate)
           document.getElementById('rate').innerHTML = exchangeRate.toFixed(2);
-          const inputAmount = document.getElementById('inputAmount').value;
+          let inputAmount = document.getElementById('inputAmount').value;
           // currency conversion output
           const exchangeResult = exchangeRate * inputAmount;
           document.getElementById('conversionResult').innerHTML = exchangeResult.toFixed(2);
+         
         })
       })
   });
@@ -69,4 +69,7 @@ if('serviceWorker' in navigator) {
   })
 }
 
-
+// idb
+const dbPromise = indexedDB.open('Currency-Converter', 1, upgradeDB => {
+  upgradeDB.createObjectStore('keyval');
+});
