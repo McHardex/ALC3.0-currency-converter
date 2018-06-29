@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Currency|Converter-Convert currencies</title>
+  <script src="./app.js"></script>
+  <link rel="icon" href="./favicon.ico" sizes="16x16" type="image/ico"> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <link rel='stylesheet' href='../css/styles.css' />
+</head>
+
+<body>
+  <div id='root'>
+    <div class='title'>
+      <h1>Currency Converter</h1>
+      <p class='rate'>Exchange Rate: <span id='rate'>0</span></p>
+      <div class='converterContainer'></div>
+      <form>
+        <input id='inputAmount' type="text">
+        <select id='currenciesA'>
+        </select>
+        <span class='to'>to</span>
+        <select id='currenciesB'>
+        </select>
+
+        <button id='submitForm'>convert</button>
+        <span id='conversionResult'>0</span>
+      </form>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
