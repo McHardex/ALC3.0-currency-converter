@@ -60,7 +60,7 @@ window.onload = function () {
 
 // service worker registration
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../service-worker.js')
+  navigator.serviceWorker.register('./service-worker.js', { scope: './' })
   .then((registration)=> {
     console.log('service worker registered')
   })
