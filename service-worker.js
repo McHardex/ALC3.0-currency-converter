@@ -26,8 +26,8 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     // Get all the cache keys (cacheName)
-    caches.keys().then((cacheNames) =>{
-      return Promise.all(cacheNames.map((thisCacheName)=> {
+    caches.keys().then((cacheNames) => {
+      return Promise.all(cacheNames.map((thisCacheName) => {
 
         // If a cached item is saved under a previous cacheName
         if (thisCacheName !== cacheName) {
@@ -37,26 +37,25 @@ self.addEventListener('activate', (e) => {
         }
       }));
     })
-  ); 
+  );
 });
 
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
       if (response) return response;
-      
+
       const requestClone = event.request.clone()
-      
+
       return fetch(requestClone).then(response => {
         const responseClone = response.clone()
-        
+
         caches.open(cacheName).then(cache => {
           cache.put(event.request, responseClone);
         })
         return response
       })
-    }) 
+    })
   )
 })
-  
-  
+
