@@ -45,16 +45,6 @@ window.onload = function () {
       .then(function (currency) {
         Object.keys(currency).map((currencyValue) => {
           const exchangeRate = currency[currencyValue].val
-          // saving queries and rates in indexedDB
-          // return dbPromise.then(function (db) {
-          //   if (!db) return;
-
-          //   const tx = db.transaction('conversion rates', 'readwrite');
-          //   const store = tx.objectStore('conversion rates');
-          //   store.put(exchangeRate, query);
-          //   store.put('hello', 'bukunmi');
-          //   return tx.complete;
-          // });
           document.getElementById('rate').innerHTML = exchangeRate.toFixed(2);
           let inputAmount = document.getElementById('inputAmount').value;
           // currency conversion output
