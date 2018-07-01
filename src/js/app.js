@@ -1,4 +1,3 @@
-
 // fetching list of currencies
 fetch('https://free.currencyconverterapi.com/api/v5/currencies')
   .then(function (response) {
@@ -43,15 +42,24 @@ window.onload = function () {
       .then(function (response) {
         return response.json();
       })
-      .then(function (result) {
-        Object.keys(result).map((resultValue)=>{
-          const exchangeRate = result[resultValue].val
+      .then(function (currency) {
+        Object.keys(currency).map((currencyValue) => {
+          const exchangeRate = currency[currencyValue].val
+          // saving queries and rates in indexedDB
+          // return dbPromise.then(function (db) {
+          //   if (!db) return;
+
+          //   const tx = db.transaction('conversion rates', 'readwrite');
+          //   const store = tx.objectStore('conversion rates');
+          //   store.put(exchangeRate, query);
+          //   store.put('hello', 'bukunmi');
+          //   return tx.complete;
+          // });
           document.getElementById('rate').innerHTML = exchangeRate.toFixed(2);
           let inputAmount = document.getElementById('inputAmount').value;
           // currency conversion output
           const exchangeResult = exchangeRate * inputAmount;
           document.getElementById('conversionResult').innerHTML = exchangeResult.toFixed(2);
-         
         })
       })
   });
@@ -59,17 +67,20 @@ window.onload = function () {
 
 
 // service worker registration
-if('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-  .then((registration)=> {
-    console.log('service worker registered')
-  })
-  .catch((err)=> {
-    console.log('service worker failed to register', err);
-  })
-}
+    .then((registration) => {
+      console.log('service worker registered')
+    })
+    .catch((err) => {
+      console.log('service worker failed to register', err);
+    });
+};
 
-// idb
-const dbPromise = indexedDB.open('Currency-Converter', 1, upgradeDB => {
-  upgradeDB.createObjectStore('keyval');
+
+
+// create indexDb database
+const dbPromise = idb.open('Currency-Converter', 1, upgradeDB => {
+  let store = upgradeDB.createObjectStore('conversion rates');
 });
+
