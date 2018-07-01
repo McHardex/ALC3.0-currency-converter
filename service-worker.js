@@ -5,8 +5,8 @@ const cacheName = 'currency-converter-v1';
 const cacheFiles = [
   './',
   './index.html',
-  './js/app.js',
-  './css/styles.css',
+  './src/js/app.js',
+  './src/css/styles.css',
   'https://free.currencyconverterapi.com/api/v5/currencies'
 ]
 
