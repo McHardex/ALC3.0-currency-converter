@@ -1,5 +1,5 @@
 // Set a name for the current cache
-const cacheName = 'currency-converter-v1';
+const cacheName = 'currency-converter-v2';
 
 // Default files to always cache
 const cacheFiles = [
